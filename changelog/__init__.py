@@ -76,8 +76,11 @@ def get_last_commit(github_config, owner, repo, branch='main'):
         owner, repo,
         'commits'
     ])
-    commits_response = requests.get(commits_url, params={'sha': 'main'},
-                                    headers=github_config.headers)
+    commits_response = requests.get(
+        commits_url, 
+        # params={'sha': 'main'},
+        headers=github_config.headers
+    )
     commits_json = commits_response.json()
     if commits_response.status_code != 200:
         raise GitHubError("Unable to get commits. {}".format(
@@ -104,8 +107,11 @@ def get_commits_between(github_config, owner, repo, first_commit, last_commit):
         'compare',
         first_commit + '...' + last_commit
     ])
-    commits_response = requests.get(commits_url, params={'sha': 'main'},
-                                    headers=github_config.headers)
+    commits_response = requests.get(
+        commits_url, 
+        # params={'sha': 'main'},
+        headers=github_config.headers
+    )
     commits_json = commits_response.json()
     if commits_response.status_code != 200:
         raise GitHubError("Unable to get commits between {} and {}. {}".format(
